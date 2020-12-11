@@ -1,0 +1,20 @@
+version: "3.8"
+
+x-default: &default
+  restart: always
+  tty: true
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10M"
+      max-file: "3"
+
+services:    
+  node:
+    <<: *default
+    build: .
+    container_name: node_heic
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app:/node/app
